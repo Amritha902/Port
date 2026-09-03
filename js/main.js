@@ -1,6 +1,154 @@
 // ===== Year =====
 document.getElementById('year').textContent = new Date().getFullYear();
 
+// ===== Hero WAN topology with travelling packets =====
+(function heroTopology(){
+  const canvas = document.getElementById('heroCanvas');
+  if (!canvas) return;
+  if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;
+
+  const ctx = canvas.getContext('2d');
+  let w = 0, h = 0, dpr = 1;
+  let nodes = [], edges = [], packets = [];
+
+  // A deliberate backbone: a few core sites, each fanning out to edge sites.
+  function buildTopology(){
+    const cores = [
+      { x: 0.24, y: 0.34 }, { x: 0.52, y: 0.62 }, { x: 0.78, y: 0.30 }
+    ];
+    const edgesRel = [
+      { x: 0.10, y: 0.16 }, { x: 0.13, y: 0.58 }, { x: 0.34, y: 0.14 },
+      { x: 0.36, y: 0.80 }, { x: 0.62, y: 0.20 }, { x: 0.66, y: 0.86 },
+      { x: 0.88, y: 0.58 }, { x: 0.92, y: 0.14 }, { x: 0.46, y: 0.40 }
+    ];
+
+    nodes = [];
+    cores.forEach(p => nodes.push({ bx: p.x, by: p.y, core: true, ph: Math.random() * Math.PI * 2 }));
+    edgesRel.forEach(p => nodes.push({ bx: p.x, by: p.y, core: false, ph: Math.random() * Math.PI * 2 }));
+
+    // core mesh
+    edges = [[0, 1], [1, 2], [0, 2]];
+    // each edge node attaches to its nearest core
+    for (let i = cores.length; i < nodes.length; i++) {
+      let best = 0, bestD = Infinity;
+      for (let c = 0; c < cores.length; c++) {
+        const d = (nodes[i].bx - cores[c].x) ** 2 + (nodes[i].by - cores[c].y) ** 2;
+        if (d < bestD) { bestD = d; best = c; }
+      }
+      edges.push([best, i]);
+    }
+    packets = edges.map((e, i) => ({ e: i, t: Math.random(), sp: 0.0016 + Math.random() * 0.0026 }));
+  }
+
+  function resize(){
+    const rect = canvas.getBoundingClientRect();
+    dpr = Math.min(window.devicePixelRatio || 1, 2);
+    w = rect.width; h = rect.height;
+    canvas.width = Math.floor(w * dpr);
+    canvas.height = Math.floor(h * dpr);
+    ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
+  }
+
+  function pos(n, time){
+    // slow organic drift so the topology breathes without wandering
+    return {
+      x: n.bx * w + Math.sin(time * 0.00016 + n.ph) * 11,
+      y: n.by * h + Math.cos(time * 0.00013 + n.ph * 1.4) * 9
+    };
+  }
+
+  function frame(time){
+    ctx.clearRect(0, 0, w, h);
+    const pts = nodes.map(n => pos(n, time));
+
+    ctx.lineWidth = 1;
+    edges.forEach(([a, b]) => {
+      ctx.strokeStyle = (nodes[a].core && nodes[b].core)
+        ? 'rgba(14,107,99,0.30)'
+        : 'rgba(255,255,255,0.055)';
+      ctx.beginPath();
+      ctx.moveTo(pts[a].x, pts[a].y);
+      ctx.lineTo(pts[b].x, pts[b].y);
+      ctx.stroke();
+    });
+
+    packets.forEach(p => {
+      p.t += p.sp;
+      if (p.t > 1) p.t = 0;
+      const [a, b] = edges[p.e];
+      const x = pts[a].x + (pts[b].x - pts[a].x) * p.t;
+      const y = pts[a].y + (pts[b].y - pts[a].y) * p.t;
+      const fade = Math.sin(p.t * Math.PI);
+      ctx.fillStyle = `rgba(31,168,155,${0.55 * fade})`;
+      ctx.beginPath();
+      ctx.arc(x, y, 1.7, 0, Math.PI * 2);
+      ctx.fill();
+    });
+
+    nodes.forEach((n, i) => {
+      const pt = pts[i];
+      ctx.beginPath();
+      ctx.arc(pt.x, pt.y, n.core ? 3.2 : 1.9, 0, Math.PI * 2);
+      ctx.fillStyle = n.core ? 'rgba(14,107,99,0.85)' : 'rgba(255,255,255,0.20)';
+      ctx.fill();
+      if (n.core) {
+        ctx.beginPath();
+        ctx.arc(pt.x, pt.y, 9 + Math.sin(time * 0.0013 + n.ph) * 2.4, 0, Math.PI * 2);
+        ctx.strokeStyle = 'rgba(14,107,99,0.20)';
+        ctx.stroke();
+      }
+    });
+
+    requestAnimationFrame(frame);
+  }
+
+  buildTopology();
+  resize();
+  window.addEventListener('resize', () => { resize(); }, { passive: true });
+  requestAnimationFrame(frame);
+})();
+
+// ===== Word-stagger reveal on display headings =====
+(function wordStagger(){
+  const targets = document.querySelectorAll('.hero-name, .section-title');
+  targets.forEach(el => {
+    if (el.dataset.split) return;
+    el.dataset.split = '1';
+    const words = el.textContent.trim().split(/\s+/);
+    el.textContent = '';
+    words.forEach((word, i) => {
+      const span = document.createElement('span');
+      span.className = 'word';
+      span.textContent = word;
+      span.style.transitionDelay = (i * 55) + 'ms';
+      el.appendChild(span);
+      if (i < words.length - 1) el.appendChild(document.createTextNode(' '));
+    });
+  });
+
+  const obs = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+      if (!entry.isIntersecting) return;
+      entry.target.querySelectorAll('.word').forEach(word => word.classList.add('in'));
+      obs.unobserve(entry.target);
+    });
+  }, { threshold: 0.2, rootMargin: '0px 0px -40px 0px' });
+
+  targets.forEach(el => obs.observe(el));
+})();
+
+// ===== Hero parallax on scroll =====
+(function heroParallax(){
+  const inner = document.querySelector('.hero > .container');
+  if (!inner) return;
+  window.addEventListener('scroll', () => {
+    const y = window.scrollY;
+    if (y > window.innerHeight) return;
+    inner.style.transform = `translateY(${y * 0.16}px)`;
+    inner.style.opacity = String(Math.max(0, 1 - y / (window.innerHeight * 0.85)));
+  }, { passive: true });
+})();
+
 // ===== Nav scroll state + progress bar =====
 const nav = document.getElementById('nav');
 const progressBar = document.getElementById('progressBar');

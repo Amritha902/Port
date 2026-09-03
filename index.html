@@ -33,6 +33,7 @@
 
 <!-- ===== HERO ===== -->
 <section id="home" class="hero">
+  <canvas id="heroCanvas"></canvas>
   <div class="hero-glow" id="heroGlow"></div>
   <div class="container">
     <p class="hero-kicker reveal">Perungudi, Chennai — Available for Summer &amp; New-Grad Roles</p>
@@ -55,21 +56,35 @@
   </div>
 </section>
 
-<!-- ===== CREDIBILITY STRIP ===== -->
-<div class="strip reveal">
-  <div class="container strip-inner">
-    <span class="item">Microsoft</span><span class="dot">·</span>
-    <span class="item">VIT Chennai</span><span class="dot">·</span>
-    <span class="item">IIT Madras</span><span class="dot">·</span>
-    <span class="item">SEBI</span><span class="dot">·</span>
-    <span class="item">Google</span><span class="dot">·</span>
-    <span class="item">Samsung</span><span class="dot">·</span>
-    <span class="item">IBM</span>
+<!-- ===== CREDIBILITY STRIP (marquee) ===== -->
+<div class="strip">
+  <div class="marquee">
+    <div class="marquee-group">
+      <span class="item">Microsoft</span><span class="dot">◆</span>
+      <span class="item">VIT Chennai</span><span class="dot">◆</span>
+      <span class="item">IIT Madras</span><span class="dot">◆</span>
+      <span class="item">SEBI</span><span class="dot">◆</span>
+      <span class="item">Google</span><span class="dot">◆</span>
+      <span class="item">Samsung</span><span class="dot">◆</span>
+      <span class="item">SanDisk</span><span class="dot">◆</span>
+      <span class="item">IBM</span><span class="dot">◆</span>
+    </div>
+    <div class="marquee-group" aria-hidden="true">
+      <span class="item">Microsoft</span><span class="dot">◆</span>
+      <span class="item">VIT Chennai</span><span class="dot">◆</span>
+      <span class="item">IIT Madras</span><span class="dot">◆</span>
+      <span class="item">SEBI</span><span class="dot">◆</span>
+      <span class="item">Google</span><span class="dot">◆</span>
+      <span class="item">Samsung</span><span class="dot">◆</span>
+      <span class="item">SanDisk</span><span class="dot">◆</span>
+      <span class="item">IBM</span><span class="dot">◆</span>
+    </div>
   </div>
 </div>
 
 <!-- ===== ABOUT ===== -->
 <section id="about" class="section">
+  <span class="ghost-index" aria-hidden="true">01</span>
   <div class="container about-grid">
     <div class="about-photo reveal">
       <img src="assets/profile.jpg" alt="Portrait of Amritha S." loading="lazy">
@@ -114,6 +129,7 @@
 
 <!-- ===== EXPERIENCE ===== -->
 <section id="experience" class="section">
+  <span class="ghost-index" aria-hidden="true">02</span>
   <div class="container">
     <div class="section-head reveal">
       <div>
@@ -160,6 +176,7 @@
 
 <!-- ===== PROJECTS ===== -->
 <section id="work" class="section">
+  <span class="ghost-index" aria-hidden="true">03</span>
   <div class="container">
     <div class="section-head reveal">
       <div>
@@ -171,7 +188,7 @@
     </div>
 
     <div class="entry-list">
-      <div class="entry reveal">
+      <div class="entry entry-project reveal">
         <div class="entry-meta">01</div>
         <div class="entry-body">
           <h3>ACAPE</h3>
@@ -179,9 +196,19 @@
           <div class="entry-tags"><span>eBPF</span><span>Linux tc/qdisc</span><span>AQM</span></div>
           <a class="entry-link" href="https://github.com/Amritha902/ccn-linux-qdisc-study" target="_blank" rel="noopener">View on GitHub →</a>
         </div>
+        <div class="entry-visual" aria-hidden="true">
+          <!-- queue depth sawtooth against a target latency line -->
+          <svg viewBox="0 0 240 120">
+            <line class="stroke-dim" x1="14" y1="14" x2="14" y2="104"/>
+            <line class="stroke-dim" x1="14" y1="104" x2="226" y2="104"/>
+            <line class="stroke-dim dash" x1="14" y1="70" x2="226" y2="70"/>
+            <path class="stroke" d="M14 98 L38 42 L50 88 L74 38 L86 84 L110 34 L122 80 L148 40 L160 86 L184 44 L196 82 L222 58"/>
+            <circle class="fill-teal" cx="222" cy="58" r="2.6"/>
+          </svg>
+        </div>
       </div>
 
-      <div class="entry reveal">
+      <div class="entry entry-project reveal">
         <div class="entry-meta">02</div>
         <div class="entry-body">
           <h3>SERUM</h3>
@@ -189,9 +216,31 @@
           <div class="entry-tags"><span>Security</span><span>Agentic Systems</span><span>Behavioural Detection</span></div>
           <a class="entry-link" href="https://github.com/Amritha902/serum" target="_blank" rel="noopener">View on GitHub →</a>
         </div>
+        <div class="entry-visual" aria-hidden="true">
+          <!-- propagation graph with a containment boundary around the infected cluster -->
+          <svg viewBox="0 0 240 120">
+            <circle class="stroke dash" cx="82" cy="60" r="40"/>
+            <line class="stroke-dim" x1="82" y1="60" x2="52" y2="38"/>
+            <line class="stroke-dim" x1="82" y1="60" x2="56" y2="84"/>
+            <line class="stroke-dim" x1="82" y1="60" x2="108" y2="36"/>
+            <line class="stroke-dim" x1="82" y1="60" x2="110" y2="84"/>
+            <line class="stroke-dim" x1="140" y1="42" x2="176" y2="30"/>
+            <line class="stroke-dim" x1="140" y1="78" x2="180" y2="92"/>
+            <line class="stroke-dim" x1="140" y1="42" x2="140" y2="78"/>
+            <circle class="fill-teal" cx="82" cy="60" r="4.5"/>
+            <circle class="fill-teal" cx="52" cy="38" r="3"/>
+            <circle class="fill-teal" cx="56" cy="84" r="3"/>
+            <circle class="fill-teal" cx="108" cy="36" r="3"/>
+            <circle class="fill-teal" cx="110" cy="84" r="3"/>
+            <circle class="fill-dim" cx="140" cy="42" r="3"/>
+            <circle class="fill-dim" cx="140" cy="78" r="3"/>
+            <circle class="fill-dim" cx="176" cy="30" r="3"/>
+            <circle class="fill-dim" cx="180" cy="92" r="3"/>
+          </svg>
+        </div>
       </div>
 
-      <div class="entry reveal">
+      <div class="entry entry-project reveal">
         <div class="entry-meta">03</div>
         <div class="entry-body">
           <h3>RFCGuardian</h3>
@@ -199,9 +248,24 @@
           <div class="entry-tags"><span>Information Retrieval</span><span>Ranking</span><span>BM25</span></div>
           <a class="entry-link" href="https://github.com/Amritha902/rfcguardian" target="_blank" rel="noopener">View on GitHub →</a>
         </div>
+        <div class="entry-visual" aria-hidden="true">
+          <!-- ranked results; the obsoleted hit struck through and demoted -->
+          <svg viewBox="0 0 240 120">
+            <rect class="stroke-dim" x="8" y="16" width="150" height="12" rx="1"/>
+            <line class="stroke" x1="8" y1="22" x2="120" y2="22" stroke-width="2"/>
+            <rect class="stroke-dim" x="8" y="42" width="120" height="12" rx="1"/>
+            <line class="stroke-dim" x1="4" y1="48" x2="132" y2="48"/>
+            <rect class="stroke-dim" x="8" y="68" width="96" height="12" rx="1"/>
+            <line class="stroke" x1="8" y1="74" x2="72" y2="74" stroke-width="2"/>
+            <rect class="stroke-dim" x="8" y="94" width="72" height="12" rx="1"/>
+            <text x="176" y="26" fill="rgba(255,255,255,.32)" font-family="monospace" font-size="9">valid</text>
+            <text x="176" y="52" fill="rgba(255,255,255,.32)" font-family="monospace" font-size="9">obsolete</text>
+            <text x="176" y="78" fill="rgba(255,255,255,.32)" font-family="monospace" font-size="9">valid</text>
+          </svg>
+        </div>
       </div>
 
-      <div class="entry reveal">
+      <div class="entry entry-project reveal">
         <div class="entry-meta">04</div>
         <div class="entry-body">
           <span class="entry-flag">Winner — SEBI Hackathon 2025</span>
@@ -210,9 +274,21 @@
           <div class="entry-tags"><span>CrewAI</span><span>Gemini</span><span>Streamlit</span><span>FinTech</span></div>
           <a class="entry-link" href="https://github.com/Amritha902/market-credibility-pro" target="_blank" rel="noopener">View on GitHub →</a>
         </div>
+        <div class="entry-visual" aria-hidden="true">
+          <!-- 0-100 credibility gauge -->
+          <svg viewBox="0 0 240 120">
+            <path class="stroke-dim" d="M50 100 A70 70 0 0 1 190 100" stroke-width="6"/>
+            <path class="stroke" d="M50 100 A70 70 0 0 1 168 52" stroke-width="6"/>
+            <line class="stroke-dim" x1="120" y1="100" x2="152" y2="62"/>
+            <circle class="fill-teal" cx="120" cy="100" r="4"/>
+            <text x="120" y="86" text-anchor="middle" fill="rgba(255,255,255,.45)" font-family="monospace" font-size="15">78</text>
+            <text x="44" y="114" fill="rgba(255,255,255,.28)" font-family="monospace" font-size="8">0</text>
+            <text x="182" y="114" fill="rgba(255,255,255,.28)" font-family="monospace" font-size="8">100</text>
+          </svg>
+        </div>
       </div>
 
-      <div class="entry reveal">
+      <div class="entry entry-project reveal">
         <div class="entry-meta">05</div>
         <div class="entry-body">
           <span class="entry-flag">Top 60 — Google GenAI Hackathon</span>
@@ -221,15 +297,45 @@
           <div class="entry-tags"><span>React</span><span>FastAPI</span><span>Vertex AI</span><span>Firebase</span></div>
           <a class="entry-link" href="https://github.com/Amritha902/GenAIExchangeProgram" target="_blank" rel="noopener">View on GitHub →</a>
         </div>
+        <div class="entry-visual" aria-hidden="true">
+          <!-- offline-first: local devices with deferred sync to cloud -->
+          <svg viewBox="0 0 240 120">
+            <rect class="stroke-dim" x="14" y="34" width="30" height="42" rx="3"/>
+            <rect class="stroke-dim" x="14" y="34" width="30" height="42" rx="3" transform="translate(38 0)"/>
+            <rect class="stroke-dim" x="14" y="34" width="30" height="42" rx="3" transform="translate(76 0)"/>
+            <path class="stroke dash" d="M132 55 C160 40 168 40 186 46"/>
+            <path class="stroke dash" d="M132 62 C160 78 168 80 186 74"/>
+            <path class="stroke" d="M186 44 a20 20 0 0 1 4 34 a16 16 0 0 1 -30 -8 a16 16 0 0 1 26 -26 z"/>
+            <circle class="fill-teal" cx="29" cy="86" r="2.4"/>
+            <circle class="fill-teal" cx="67" cy="86" r="2.4"/>
+            <circle class="fill-teal" cx="105" cy="86" r="2.4"/>
+          </svg>
+        </div>
       </div>
 
-      <div class="entry reveal">
+      <div class="entry entry-project reveal">
         <div class="entry-meta">06</div>
         <div class="entry-body">
           <h3>Azure Hub-Spoke HA Platform</h3>
           <p>Hub-spoke VNets with peering and NSG segmentation, Bastion-only admin access, an Application Gateway (WAF) fronting a VM Scale Set behind a Standard Load Balancer.</p>
           <div class="entry-tags"><span>Azure VNets</span><span>WAF</span><span>Load Balancer</span><span>HA</span></div>
           <a class="entry-link" href="https://github.com/Amritha902/hubspoke-student" target="_blank" rel="noopener">View on GitHub →</a>
+        </div>
+        <div class="entry-visual" aria-hidden="true">
+          <!-- hub VNet peered to spoke VNets -->
+          <svg viewBox="0 0 240 120">
+            <line class="stroke-dim" x1="120" y1="60" x2="52" y2="26"/>
+            <line class="stroke-dim" x1="120" y1="60" x2="52" y2="94"/>
+            <line class="stroke-dim" x1="120" y1="60" x2="192" y2="26"/>
+            <line class="stroke-dim" x1="120" y1="60" x2="192" y2="94"/>
+            <line class="stroke-dim" x1="120" y1="60" x2="120" y2="14"/>
+            <rect class="stroke" x="102" y="46" width="36" height="28" rx="3"/>
+            <rect class="stroke-dim" x="34" y="14" width="34" height="24" rx="3"/>
+            <rect class="stroke-dim" x="34" y="82" width="34" height="24" rx="3"/>
+            <rect class="stroke-dim" x="174" y="14" width="34" height="24" rx="3"/>
+            <rect class="stroke-dim" x="174" y="82" width="34" height="24" rx="3"/>
+            <circle class="fill-teal" cx="120" cy="14" r="3"/>
+          </svg>
         </div>
       </div>
     </div>
@@ -238,6 +344,7 @@
 
 <!-- ===== GITHUB ACTIVITY ===== -->
 <section id="activity" class="section">
+  <span class="ghost-index" aria-hidden="true">04</span>
   <div class="container">
     <div class="section-head reveal">
       <div>
@@ -254,6 +361,7 @@
 
 <!-- ===== RESEARCH & PATENTS ===== -->
 <section id="research" class="section">
+  <span class="ghost-index" aria-hidden="true">05</span>
   <div class="container">
     <div class="section-head reveal">
       <div>
@@ -287,6 +395,7 @@
 
 <!-- ===== SKILLS ===== -->
 <section id="skills" class="section">
+  <span class="ghost-index" aria-hidden="true">06</span>
   <div class="container">
     <div class="section-head reveal">
       <div>
@@ -322,6 +431,7 @@
 
 <!-- ===== ACHIEVEMENTS ===== -->
 <section id="achievements" class="section">
+  <span class="ghost-index" aria-hidden="true">07</span>
   <div class="container">
     <div class="section-head reveal">
       <div>
@@ -372,6 +482,7 @@
 
 <!-- ===== EDUCATION + CERTS ===== -->
 <section id="education" class="section">
+  <span class="ghost-index" aria-hidden="true">08</span>
   <div class="container edu-grid">
     <div class="reveal">
       <p class="eyebrow">Academics</p>
@@ -403,6 +514,7 @@
 
 <!-- ===== CONTACT ===== -->
 <section id="contact" class="section">
+  <span class="ghost-index" aria-hidden="true">09</span>
   <div class="container">
     <p class="eyebrow reveal">Let's Talk</p>
     <h2 class="section-title reveal">Open to cloud, network, and data roles.</h2>
