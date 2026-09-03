@@ -5,30 +5,27 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Amritha S. — Cloud &amp; Network Engineer</title>
 <meta name="description" content="Amritha S. — Electronics &amp; Communication Engineering student at VIT Chennai, BS Data Science at IIT Madras. Cloud &amp; network infrastructure, data systems, and applied research.">
-<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Crect width='100' height='100' rx='22' fill='%23000000'/%3E%3Ctext x='50' y='67' font-size='52' font-weight='700' font-family='-apple-system,Helvetica,Arial,sans-serif' fill='%230a84ff' text-anchor='middle'%3EA%3C/text%3E%3C/svg%3E">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Crect width='100' height='100' fill='%23000'/%3E%3Ctext x='50' y='68' font-size='54' font-style='italic' font-family='Georgia,serif' fill='%230e6b63' text-anchor='middle'%3EA%3C/text%3E%3C/svg%3E">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Archivo:wght@500;600;700;800;900&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,wght@0,400;0,500;1,400;1,500&family=Archivo:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="css/style.css">
 </head>
 <body>
 
-<div class="grain"></div>
 <div class="progress-bar" id="progressBar"></div>
 
-<!-- ===== NAV (titlebar) ===== -->
 <header class="nav" id="nav">
   <div class="nav-inner">
-    <div class="nav-dots">
-      <span class="win-dot red"></span><span class="win-dot yellow"></span><span class="win-dot green"></span>
-    </div>
-    <div class="nav-title">
-      <svg viewBox="0 0 24 24"><path d="M12 1 3 5v6c0 5.55 3.84 10.74 9 12 5.16-1.26 9-6.45 9-12V5l-9-4Z"/></svg>
-      <span class="nav-title-text">amritha-s.dev</span>
-    </div>
-    <div class="nav-actions">
-      <a href="assets/Amritha_S_Resume.pdf" class="btn btn-ghost" download>Résumé</a>
-    </div>
+    <a href="#home" class="brand">Amritha S.</a>
+    <nav class="nav-links" id="navLinks">
+      <a href="#about" class="nav-link" data-link>About</a>
+      <a href="#experience" class="nav-link" data-link>Experience</a>
+      <a href="#work" class="nav-link" data-link>Work</a>
+      <a href="#contact" class="nav-link" data-link>Contact</a>
+      <a href="assets/Amritha_S_Resume.pdf" class="nav-resume" download>Résumé</a>
+    </nav>
+    <button class="burger" id="burger" aria-label="Toggle menu"><span></span><span></span><span></span></button>
   </div>
 </header>
 
@@ -36,80 +33,49 @@
 
 <!-- ===== HERO ===== -->
 <section id="home" class="hero">
-  <div class="hero-bg" aria-hidden="true">
-    <svg class="grid-lines" aria-hidden="true"><defs><pattern id="grid" width="42" height="42" patternUnits="userSpaceOnUse"><path d="M 42 0 L 0 0 0 42" fill="none" stroke="rgba(255,255,255,0.035)" stroke-width="1"/></pattern></defs><rect width="100%" height="100%" fill="url(#grid)"/></svg>
-  </div>
-
-  <div class="hero-inner">
-    <p class="hero-kicker reveal">Perungudi, Chennai &nbsp;·&nbsp; Available for Summer &amp; New-Grad roles</p>
-
-    <div class="win-card terminal reveal">
-      <div class="win-bar">
-        <span class="win-dot red"></span><span class="win-dot yellow"></span><span class="win-dot green"></span>
-        <span class="win-title">amritha@vit-chennai — zsh — 80×24</span>
-      </div>
-      <div class="terminal-body">
-        <div class="term-line">
-          <span class="prompt-user">amritha@vit</span><span class="prompt-path">~</span><span class="prompt-sep">%</span>
-          <span class="term-cmd" id="cmd1"></span>
-        </div>
-        <div class="term-out" id="out1" style="display:none;">
-          <span class="big">Amritha S.</span>
-          Final-year ECE @ VIT Chennai · BS Data Science @ IIT Madras
-        </div>
-        <div class="term-line" id="line2" style="display:none;">
-          <span class="prompt-user">amritha@vit</span><span class="prompt-path">~</span><span class="prompt-sep">%</span>
-          <span class="term-cmd" id="cmd2"></span>
-        </div>
-        <div class="term-out" id="out2" style="display:none;">
-          <span class="role-out" id="typedRole"></span><span class="cursor">▌</span>
-        </div>
-      </div>
-    </div>
-
+  <div class="container">
+    <p class="hero-kicker reveal">Perungudi, Chennai — Available for Summer &amp; New-Grad Roles</p>
+    <h1 class="hero-name reveal">Amritha S.</h1>
+    <p class="hero-role reveal"><span id="typedRole"></span><span class="cursor">|</span></p>
     <p class="hero-desc reveal">
-      I work where networks meet the cloud — backbone topology, fault correlation, and the Azure fabric
-      layered over it — turning raw operational telemetry into decisions an on-call engineer can act on.
-      Co-inventor on two published Indian patents.
+      Final-year Electronics &amp; Communication Engineering student at <strong>VIT Chennai</strong>,
+      reading a parallel BS in Data Science at <strong>IIT Madras</strong>. I work where networks meet
+      the cloud — backbone topology, fault correlation, and the Azure fabric layered over it — turning
+      raw operational telemetry into decisions an on-call engineer can act on. Co-inventor on two
+      published Indian patents.
     </p>
     <div class="hero-actions reveal">
-      <a href="#projects" class="btn btn-primary">View My Work</a>
-      <a href="#contact" class="btn btn-outline">Get In Touch</a>
+      <a href="#work" class="btn-solid">View Work</a>
+      <a href="#contact" class="btn-text">Get In Touch</a>
     </div>
-    <div class="hero-socials reveal">
-      <a href="https://github.com/Amritha902" target="_blank" rel="noopener" aria-label="GitHub">
-        <svg viewBox="0 0 24 24"><path d="M12 .5C5.65.5.5 5.65.5 12c0 5.1 3.29 9.42 7.86 10.95.57.1.78-.25.78-.55v-1.94c-3.2.7-3.88-1.54-3.88-1.54-.52-1.34-1.28-1.7-1.28-1.7-1.04-.72.08-.7.08-.7 1.16.08 1.77 1.2 1.77 1.2 1.03 1.77 2.7 1.26 3.36.96.1-.75.4-1.26.73-1.55-2.56-.29-5.26-1.28-5.26-5.7 0-1.26.45-2.28 1.19-3.09-.12-.29-.52-1.47.11-3.06 0 0 .97-.31 3.18 1.18a11.1 11.1 0 0 1 5.8 0c2.2-1.49 3.17-1.18 3.17-1.18.63 1.59.24 2.77.12 3.06.74.81 1.18 1.83 1.18 3.09 0 4.43-2.7 5.4-5.28 5.69.42.36.78 1.07.78 2.16v3.2c0 .31.21.67.79.55A10.52 10.52 0 0 0 23.5 12c0-6.35-5.15-11.5-11.5-11.5Z"/></svg>
-      </a>
-      <a href="https://linkedin.com/in/amritha-s-oo" target="_blank" rel="noopener" aria-label="LinkedIn">
-        <svg viewBox="0 0 24 24"><path d="M20.45 20.45h-3.55v-5.57c0-1.33-.02-3.04-1.85-3.04-1.86 0-2.14 1.45-2.14 2.94v5.67H9.36V9h3.41v1.56h.05c.47-.9 1.63-1.85 3.36-1.85 3.6 0 4.27 2.37 4.27 5.45v6.29ZM5.34 7.43a2.06 2.06 0 1 1 0-4.12 2.06 2.06 0 0 1 0 4.12ZM7.12 20.45H3.56V9h3.56v11.45ZM22.22 0H1.77C.8 0 0 .78 0 1.75v20.5C0 23.22.8 24 1.77 24h20.45c.98 0 1.78-.78 1.78-1.75V1.75C24 .78 23.2 0 22.22 0Z"/></svg>
-      </a>
-      <a href="mailto:amritha16112005@gmail.com" aria-label="Email">
-        <svg viewBox="0 0 24 24"><path d="M2 4h20a1 1 0 0 1 1 1v14a1 1 0 0 1-1 1H2a1 1 0 0 1-1-1V5a1 1 0 0 1 1-1Zm19 2.4-9 6.3-9-6.3V19h18V6.4ZM3.2 5l8.8 6.16L20.8 5H3.2Z"/></svg>
-      </a>
-      <a href="https://www.credly.com/users/amritha-s" target="_blank" rel="noopener" aria-label="Credly">
-        <svg viewBox="0 0 24 24"><path d="M12 1 3 5v6c0 5.55 3.84 10.74 9 12 5.16-1.26 9-6.45 9-12V5l-9-4Zm0 2.2 7 3.1v4.7c0 4.52-3.05 8.76-7 9.94-3.95-1.18-7-5.42-7-9.94V6.3l7-3.1Zm-1 5.3v6.5l5-3.25-5-3.25Z"/></svg>
-      </a>
-      <a href="https://medium.com/@amritha16112005" target="_blank" rel="noopener" aria-label="Medium">
-        <svg viewBox="0 0 24 24"><path d="M13.54 12a6.8 6.8 0 1 1-13.6 0 6.8 6.8 0 0 1 13.6 0Zm7.42 0c0 3.54-1.52 6.42-3.4 6.42-1.87 0-3.39-2.88-3.39-6.42s1.52-6.42 3.4-6.42 3.39 2.88 3.39 6.42Zm3.04 0c0 3.17-.53 5.75-1.19 5.75-.65 0-1.18-2.58-1.18-5.75s.53-5.75 1.18-5.75c.66 0 1.19 2.57 1.19 5.75Z"/></svg>
-      </a>
-    </div>
+    <p class="hero-socials reveal">
+      <a href="https://github.com/Amritha902" target="_blank" rel="noopener">GitHub</a><span class="sep"> — </span><a href="https://linkedin.com/in/amritha-s-oo" target="_blank" rel="noopener">LinkedIn</a><span class="sep"> — </span><a href="mailto:amritha16112005@gmail.com">Email</a><span class="sep"> — </span><a href="https://www.credly.com/users/amritha-s" target="_blank" rel="noopener">Credly</a><span class="sep"> — </span><a href="https://medium.com/@amritha16112005" target="_blank" rel="noopener">Medium</a>
+    </p>
   </div>
 </section>
+
+<!-- ===== CREDIBILITY STRIP ===== -->
+<div class="strip reveal">
+  <div class="container strip-inner">
+    <span class="item">Microsoft</span><span class="dot">·</span>
+    <span class="item">VIT Chennai</span><span class="dot">·</span>
+    <span class="item">IIT Madras</span><span class="dot">·</span>
+    <span class="item">SEBI</span><span class="dot">·</span>
+    <span class="item">Google</span><span class="dot">·</span>
+    <span class="item">Samsung</span><span class="dot">·</span>
+    <span class="item">IBM</span>
+  </div>
+</div>
 
 <!-- ===== ABOUT ===== -->
 <section id="about" class="section">
   <div class="container about-grid">
-    <div class="about-media reveal">
-      <div class="photo-frame">
-        <img src="assets/profile.jpg" alt="Portrait of Amritha S." loading="lazy">
-      </div>
-      <div class="photo-tag">
-        <span class="dot"></span> Open to Cloud / Network / Data roles
-      </div>
+    <div class="about-photo reveal">
+      <img src="assets/profile.jpg" alt="Portrait of Amritha S." loading="lazy">
     </div>
     <div class="about-copy">
-      <p class="eyebrow reveal">About Me</p>
-      <h2 class="section-title reveal">Networks, cloud fabric, and the data<br class="br-desktop"> systems built on top of them.</h2>
+      <p class="eyebrow reveal">About</p>
+      <h2 class="section-title reveal" style="margin-bottom:28px;">Networks, cloud fabric, and the data systems built on top of them.</h2>
       <p class="reveal">
         I'm a final-year ECE undergraduate at <strong>VIT Chennai</strong>, simultaneously pursuing a
         BS in Data Science &amp; Applications at <strong>IIT Madras</strong>. My work sits at the
@@ -124,21 +90,21 @@
         patents spanning privacy-preserving compliance verification and low-power VLSI arithmetic.
       </p>
       <div class="stat-row reveal">
-        <div class="stat">
+        <div>
           <span class="stat-num" data-count="2">0</span>
           <span class="stat-label">Published Patents</span>
         </div>
-        <div class="stat">
+        <div>
           <span class="stat-num" data-count="6">0</span>
-          <span class="stat-label">Hackathons / Research Wins</span>
+          <span class="stat-label">Hackathon / Research Wins</span>
         </div>
-        <div class="stat">
+        <div>
           <span class="stat-num" data-count="6">0</span>
           <span class="stat-label">Independent Projects</span>
         </div>
-        <div class="stat">
+        <div>
           <span class="stat-num" data-count="8.65" data-decimal="true">0</span>
-          <span class="stat-label">CGPA / 10 · VIT Chennai</span>
+          <span class="stat-label">CGPA · VIT Chennai</span>
         </div>
       </div>
     </div>
@@ -148,165 +114,139 @@
 <!-- ===== EXPERIENCE ===== -->
 <section id="experience" class="section">
   <div class="container">
-    <p class="eyebrow reveal center">Career So Far</p>
-    <h2 class="section-title center reveal">Experience</h2>
+    <div class="section-head reveal">
+      <div>
+        <p class="eyebrow">Career</p>
+        <h2 class="section-title">Experience</h2>
+      </div>
+    </div>
 
-    <div class="timeline">
-      <div class="win-card timeline-card reveal">
-        <div class="win-bar">
-          <span class="win-dot gray"></span><span class="win-dot gray"></span><span class="win-dot gray"></span>
-          <span class="win-title">experience/microsoft-internship.md</span>
-          <span class="timeline-date">May 2026 – Jul 2026</span>
-        </div>
-        <div class="timeline-card-body">
-          <div class="timeline-head">
-            <div>
-              <h3>Cloud Network Engineer Intern</h3>
-              <p class="timeline-org">Microsoft — Network Engineering Services (D&amp;D), Hyderabad</p>
-            </div>
-          </div>
-          <ul>
-            <li>Built <strong>Argus</strong>, a WAN fault-correlation engine that collapses ICM incident storms from one physical fault into a single root-cause group over a dual-graph topology model — <strong>83.8%</strong> group recall, <strong>93.1%</strong> purity, P99 under 15s, shipped as an Azure Function App.</li>
-            <li>Traced every missed incident pair to its cause, identified cross-site link adjacency as the dominant gap, and added a four-lever learning layer that produced the largest recall gains.</li>
-          </ul>
-          <div class="tag-row">
-            <span class="tag">Azure Functions</span><span class="tag">KQL</span><span class="tag">Graph Modeling</span><span class="tag">WAN Topology</span>
-          </div>
+    <div class="entry-list">
+      <div class="entry reveal">
+        <div class="entry-meta">May 2026 —<br>Jul 2026</div>
+        <div class="entry-body">
+          <h3>Cloud Network Engineer Intern</h3>
+          <p class="entry-org">Microsoft — Network Engineering Services (D&amp;D), Hyderabad</p>
+          <p>Built <strong>Argus</strong>, a WAN fault-correlation engine that collapses ICM incident storms from one physical fault into a single root-cause group over a dual-graph topology model — <strong>83.8%</strong> group recall, <strong>93.1%</strong> purity, P99 under 15s, shipped as an Azure Function App.</p>
+          <p>Traced every missed incident pair to its cause, identified cross-site link adjacency as the dominant gap, and added a four-lever learning layer that produced the largest recall gains.</p>
+          <div class="entry-tags"><span>Azure Functions</span><span>KQL</span><span>Graph Modeling</span><span>WAN Topology</span></div>
         </div>
       </div>
 
-      <div class="win-card timeline-card reveal">
-        <div class="win-bar">
-          <span class="win-dot gray"></span><span class="win-dot gray"></span><span class="win-dot gray"></span>
-          <span class="win-title">experience/vit-vlsi-research.md</span>
-          <span class="timeline-date">2025</span>
-        </div>
-        <div class="timeline-card-body">
-          <div class="timeline-head">
-            <div>
-              <h3>Summer Research Intern</h3>
-              <p class="timeline-org">Centre of Nanoelectronics &amp; VLSI, VIT Chennai</p>
-            </div>
-          </div>
-          <ul>
-            <li>Designed a delay-optimised low-power multiplier with input-based bypass logic in Cadence Virtuoso at 180nm — the basis of a published Indian patent.</li>
-          </ul>
-          <div class="tag-row">
-            <span class="tag">Cadence Virtuoso</span><span class="tag">Low-Power VLSI</span><span class="tag">180nm</span>
-          </div>
+      <div class="entry reveal">
+        <div class="entry-meta">2025</div>
+        <div class="entry-body">
+          <h3>Summer Research Intern</h3>
+          <p class="entry-org">Centre of Nanoelectronics &amp; VLSI, VIT Chennai</p>
+          <p>Designed a delay-optimised low-power multiplier with input-based bypass logic in Cadence Virtuoso at 180nm — the basis of a published Indian patent.</p>
+          <div class="entry-tags"><span>Cadence Virtuoso</span><span>Low-Power VLSI</span><span>180nm</span></div>
         </div>
       </div>
     </div>
   </div>
 </section>
 
+<!-- ===== STAT BAND ===== -->
+<div class="container">
+  <div class="stat-band reveal">
+    <span class="stat-band-num">83.8%</span>
+    <div class="stat-band-copy">
+      <span class="label">Argus · Microsoft</span>
+      <p>Group recall on a WAN fault-correlation engine collapsing ICM incident storms into single root-cause groups — 93.1% purity, P99 under 15 seconds, running in production as an Azure Function App.</p>
+    </div>
+  </div>
+</div>
+
 <!-- ===== PROJECTS ===== -->
-<section id="projects" class="section">
+<section id="work" class="section">
   <div class="container">
-    <p class="eyebrow reveal center">Selected Work</p>
-    <h2 class="section-title center reveal">Projects</h2>
-    <p class="section-sub center reveal">A mix of networking, security, retrieval, and applied ML — built end to end.</p>
+    <div class="section-head reveal">
+      <div>
+        <p class="eyebrow">Selected Work</p>
+        <h2 class="section-title">Projects</h2>
+        <p class="section-sub">A mix of networking, security, retrieval, and applied ML — built end to end.</p>
+      </div>
+      <span class="section-count">01 — 06</span>
+    </div>
 
-    <div class="project-grid">
-
-      <article class="win-card project-card reveal">
-        <div class="win-bar">
-          <span class="win-dot gray"></span><span class="win-dot gray"></span><span class="win-dot gray"></span>
-          <span class="win-title">ACAPE.c</span>
-        </div>
-        <div class="project-body">
-          <a class="project-link-top" href="https://github.com/Amritha902?tab=repositories&q=ACAPE" target="_blank" rel="noopener">
-            <svg viewBox="0 0 24 24"><path d="M12 .5C5.65.5.5 5.65.5 12c0 5.1 3.29 9.42 7.86 10.95.57.1.78-.25.78-.55v-1.94c-3.2.7-3.88-1.54-3.88-1.54-.52-1.34-1.28-1.7-1.28-1.7-1.04-.72.08-.7.08-.7 1.16.08 1.77 1.2 1.77 1.2 1.03 1.77 2.7 1.26 3.36.96.1-.75.4-1.26.73-1.55-2.56-.29-5.26-1.28-5.26-5.7 0-1.26.45-2.28 1.19-3.09-.12-.29-.52-1.47.11-3.06 0 0 .97-.31 3.18 1.18a11.1 11.1 0 0 1 5.8 0c2.2-1.49 3.17-1.18 3.17-1.18.63 1.59.24 2.77.12 3.06.74.81 1.18 1.83 1.18 3.09 0 4.43-2.7 5.4-5.28 5.69.42.36.78 1.07.78 2.16v3.2c0 .31.21.67.79.55A10.52 10.52 0 0 0 23.5 12c0-6.35-5.15-11.5-11.5-11.5Z"/></svg>
-            GitHub ↗
-          </a>
+    <div class="entry-list">
+      <div class="entry reveal">
+        <div class="entry-meta">01</div>
+        <div class="entry-body">
           <h3>ACAPE</h3>
-          <p>Adaptive queue management for Linux: fq_codel tuning driven by eBPF telemetry with a three-timescale controller, trading queue delay against throughput on Linux <code>tc</code> qdiscs.</p>
-          <div class="tag-row"><span class="tag">eBPF</span><span class="tag">Linux tc/qdisc</span><span class="tag">AQM</span></div>
+          <p>Adaptive queue management for Linux: fq_codel tuning driven by eBPF telemetry with a three-timescale controller, trading queue delay against throughput on Linux tc qdiscs.</p>
+          <div class="entry-tags"><span>eBPF</span><span>Linux tc/qdisc</span><span>AQM</span></div>
+          <a class="entry-link" href="https://github.com/Amritha902?tab=repositories&q=ACAPE" target="_blank" rel="noopener">View on GitHub →</a>
         </div>
-      </article>
+      </div>
 
-      <article class="win-card project-card reveal">
-        <div class="win-bar">
-          <span class="win-dot gray"></span><span class="win-dot gray"></span><span class="win-dot gray"></span>
-          <span class="win-title">SERUM.rs</span>
-        </div>
-        <div class="project-body">
-          <a class="project-link-top" href="https://github.com/Amritha902?tab=repositories&q=SERUM" target="_blank" rel="noopener">
-            <svg viewBox="0 0 24 24"><path d="M12 .5C5.65.5.5 5.65.5 12c0 5.1 3.29 9.42 7.86 10.95.57.1.78-.25.78-.55v-1.94c-3.2.7-3.88-1.54-3.88-1.54-.52-1.34-1.28-1.7-1.28-1.7-1.04-.72.08-.7.08-.7 1.16.08 1.77 1.2 1.77 1.2 1.03 1.77 2.7 1.26 3.36.96.1-.75.4-1.26.73-1.55-2.56-.29-5.26-1.28-5.26-5.7 0-1.26.45-2.28 1.19-3.09-.12-.29-.52-1.47.11-3.06 0 0 .97-.31 3.18 1.18a11.1 11.1 0 0 1 5.8 0c2.2-1.49 3.17-1.18 3.17-1.18.63 1.59.24 2.77.12 3.06.74.81 1.18 1.83 1.18 3.09 0 4.43-2.7 5.4-5.28 5.69.42.36.78 1.07.78 2.16v3.2c0 .31.21.67.79.55A10.52 10.52 0 0 0 23.5 12c0-6.35-5.15-11.5-11.5-11.5Z"/></svg>
-            GitHub ↗
-          </a>
+      <div class="entry reveal">
+        <div class="entry-meta">02</div>
+        <div class="entry-body">
           <h3>SERUM</h3>
-          <p>Content-aware containment framework for agentic malware — detects malicious agent behaviour by what it <em>does</em>, rather than signature matching.</p>
-          <div class="tag-row"><span class="tag">Security</span><span class="tag">Agentic Systems</span><span class="tag">Behavioural Detection</span></div>
+          <p>Content-aware containment framework for agentic malware — detects malicious agent behaviour by what it does, rather than signature matching.</p>
+          <div class="entry-tags"><span>Security</span><span>Agentic Systems</span><span>Behavioural Detection</span></div>
+          <a class="entry-link" href="https://github.com/Amritha902?tab=repositories&q=SERUM" target="_blank" rel="noopener">View on GitHub →</a>
         </div>
-      </article>
+      </div>
 
-      <article class="win-card project-card reveal">
-        <div class="win-bar">
-          <span class="win-dot gray"></span><span class="win-dot gray"></span><span class="win-dot gray"></span>
-          <span class="win-title">RFCGuardian.py</span>
-        </div>
-        <div class="project-body">
-          <a class="project-link-top" href="https://github.com/Amritha902?tab=repositories&q=RFCGuardian" target="_blank" rel="noopener">
-            <svg viewBox="0 0 24 24"><path d="M12 .5C5.65.5.5 5.65.5 12c0 5.1 3.29 9.42 7.86 10.95.57.1.78-.25.78-.55v-1.94c-3.2.7-3.88-1.54-3.88-1.54-.52-1.34-1.28-1.7-1.28-1.7-1.04-.72.08-.7.08-.7 1.16.08 1.77 1.2 1.77 1.2 1.03 1.77 2.7 1.26 3.36.96.1-.75.4-1.26.73-1.55-2.56-.29-5.26-1.28-5.26-5.7 0-1.26.45-2.28 1.19-3.09-.12-.29-.52-1.47.11-3.06 0 0 .97-.31 3.18 1.18a11.1 11.1 0 0 1 5.8 0c2.2-1.49 3.17-1.18 3.17-1.18.63 1.59.24 2.77.12 3.06.74.81 1.18 1.83 1.18 3.09 0 4.43-2.7 5.4-5.28 5.69.42.36.78 1.07.78 2.16v3.2c0 .31.21.67.79.55A10.52 10.52 0 0 0 23.5 12c0-6.35-5.15-11.5-11.5-11.5Z"/></svg>
-            GitHub ↗
-          </a>
+      <div class="entry reveal">
+        <div class="entry-meta">03</div>
+        <div class="entry-body">
           <h3>RFCGuardian</h3>
           <p>Temporal validity in retrieval over the versioned IETF RFC corpus. 25% of BM25 queries return obsoleted normative text at rank 1 — built a validity-aware ranker hitting <strong>MRR 0.773</strong> with harmful-at-1 down <strong>40%</strong>.</p>
-          <div class="tag-row"><span class="tag">Information Retrieval</span><span class="tag">Ranking</span><span class="tag">BM25</span></div>
+          <div class="entry-tags"><span>Information Retrieval</span><span>Ranking</span><span>BM25</span></div>
+          <a class="entry-link" href="https://github.com/Amritha902?tab=repositories&q=RFCGuardian" target="_blank" rel="noopener">View on GitHub →</a>
         </div>
-      </article>
+      </div>
 
-      <article class="win-card project-card featured reveal">
-        <div class="win-bar">
-          <span class="win-dot gray"></span><span class="win-dot gray"></span><span class="win-dot gray"></span>
-          <span class="win-title">InfoCrux.ipynb</span>
-        </div>
-        <div class="project-body">
-          <a class="project-link-top" href="https://github.com/Amritha902?tab=repositories&q=InfoCrux" target="_blank" rel="noopener">
-            <svg viewBox="0 0 24 24"><path d="M12 .5C5.65.5.5 5.65.5 12c0 5.1 3.29 9.42 7.86 10.95.57.1.78-.25.78-.55v-1.94c-3.2.7-3.88-1.54-3.88-1.54-.52-1.34-1.28-1.7-1.28-1.7-1.04-.72.08-.7.08-.7 1.16.08 1.77 1.2 1.77 1.2 1.03 1.77 2.7 1.26 3.36.96.1-.75.4-1.26.73-1.55-2.56-.29-5.26-1.28-5.26-5.7 0-1.26.45-2.28 1.19-3.09-.12-.29-.52-1.47.11-3.06 0 0 .97-.31 3.18 1.18a11.1 11.1 0 0 1 5.8 0c2.2-1.49 3.17-1.18 3.17-1.18.63 1.59.24 2.77.12 3.06.74.81 1.18 1.83 1.18 3.09 0 4.43-2.7 5.4-5.28 5.69.42.36.78 1.07.78 2.16v3.2c0 .31.21.67.79.55A10.52 10.52 0 0 0 23.5 12c0-6.35-5.15-11.5-11.5-11.5Z"/></svg>
-            GitHub ↗
-          </a>
-          <span class="badge">Winner — SEBI Hackathon 2025</span>
+      <div class="entry reveal">
+        <div class="entry-meta">04</div>
+        <div class="entry-body">
+          <span class="entry-flag">Winner — SEBI Hackathon 2025</span>
           <h3>InfoCrux</h3>
           <p>AI market credibility engine. Streamlit platform with 0–100 credibility scoring across NSE/BSE APIs, VirusTotal &amp; URLScan checks, and CrewAI multi-agent workflows on Gemini. Jury Recommendation Prize, top 6 nationally.</p>
-          <div class="tag-row"><span class="tag">CrewAI</span><span class="tag">Gemini</span><span class="tag">Streamlit</span><span class="tag">FinTech</span></div>
+          <div class="entry-tags"><span>CrewAI</span><span>Gemini</span><span>Streamlit</span><span>FinTech</span></div>
+          <a class="entry-link" href="https://github.com/Amritha902?tab=repositories&q=InfoCrux" target="_blank" rel="noopener">View on GitHub →</a>
         </div>
-      </article>
+      </div>
 
-      <article class="win-card project-card reveal">
-        <div class="win-bar">
-          <span class="win-dot gray"></span><span class="win-dot gray"></span><span class="win-dot gray"></span>
-          <span class="win-title">VidyaVahini.tsx</span>
-        </div>
-        <div class="project-body">
-          <a class="project-link-top" href="https://github.com/Amritha902?tab=repositories&q=VidyaVahini" target="_blank" rel="noopener">
-            <svg viewBox="0 0 24 24"><path d="M12 .5C5.65.5.5 5.65.5 12c0 5.1 3.29 9.42 7.86 10.95.57.1.78-.25.78-.55v-1.94c-3.2.7-3.88-1.54-3.88-1.54-.52-1.34-1.28-1.7-1.28-1.7-1.04-.72.08-.7.08-.7 1.16.08 1.77 1.2 1.77 1.2 1.03 1.77 2.7 1.26 3.36.96.1-.75.4-1.26.73-1.55-2.56-.29-5.26-1.28-5.26-5.7 0-1.26.45-2.28 1.19-3.09-.12-.29-.52-1.47.11-3.06 0 0 .97-.31 3.18 1.18a11.1 11.1 0 0 1 5.8 0c2.2-1.49 3.17-1.18 3.17-1.18.63 1.59.24 2.77.12 3.06.74.81 1.18 1.83 1.18 3.09 0 4.43-2.7 5.4-5.28 5.69.42.36.78 1.07.78 2.16v3.2c0 .31.21.67.79.55A10.52 10.52 0 0 0 23.5 12c0-6.35-5.15-11.5-11.5-11.5Z"/></svg>
-            GitHub ↗
-          </a>
-          <span class="badge">Top 60 — Google GenAI Hackathon</span>
+      <div class="entry reveal">
+        <div class="entry-meta">05</div>
+        <div class="entry-body">
+          <span class="entry-flag">Top 60 — Google GenAI Hackathon</span>
           <h3>VidyaVahini</h3>
           <p>Offline-first AI education PWA built with React, FastAPI, Firebase, and Vertex AI — with authentication, role management, and usage analytics for low-connectivity classrooms.</p>
-          <div class="tag-row"><span class="tag">React</span><span class="tag">FastAPI</span><span class="tag">Vertex AI</span><span class="tag">Firebase</span></div>
+          <div class="entry-tags"><span>React</span><span>FastAPI</span><span>Vertex AI</span><span>Firebase</span></div>
+          <a class="entry-link" href="https://github.com/Amritha902?tab=repositories&q=VidyaVahini" target="_blank" rel="noopener">View on GitHub →</a>
         </div>
-      </article>
+      </div>
 
-      <article class="win-card project-card reveal">
-        <div class="win-bar">
-          <span class="win-dot gray"></span><span class="win-dot gray"></span><span class="win-dot gray"></span>
-          <span class="win-title">azure-hub-spoke.tf</span>
-        </div>
-        <div class="project-body">
-          <a class="project-link-top" href="https://github.com/Amritha902?tab=repositories&q=Azure" target="_blank" rel="noopener">
-            <svg viewBox="0 0 24 24"><path d="M12 .5C5.65.5.5 5.65.5 12c0 5.1 3.29 9.42 7.86 10.95.57.1.78-.25.78-.55v-1.94c-3.2.7-3.88-1.54-3.88-1.54-.52-1.34-1.28-1.7-1.28-1.7-1.04-.72.08-.7.08-.7 1.16.08 1.77 1.2 1.77 1.2 1.03 1.77 2.7 1.26 3.36.96.1-.75.4-1.26.73-1.55-2.56-.29-5.26-1.28-5.26-5.7 0-1.26.45-2.28 1.19-3.09-.12-.29-.52-1.47.11-3.06 0 0 .97-.31 3.18 1.18a11.1 11.1 0 0 1 5.8 0c2.2-1.49 3.17-1.18 3.17-1.18.63 1.59.24 2.77.12 3.06.74.81 1.18 1.83 1.18 3.09 0 4.43-2.7 5.4-5.28 5.69.42.36.78 1.07.78 2.16v3.2c0 .31.21.67.79.55A10.52 10.52 0 0 0 23.5 12c0-6.35-5.15-11.5-11.5-11.5Z"/></svg>
-            GitHub ↗
-          </a>
+      <div class="entry reveal">
+        <div class="entry-meta">06</div>
+        <div class="entry-body">
           <h3>Azure Hub-Spoke HA Platform</h3>
           <p>Hub-spoke VNets with peering and NSG segmentation, Bastion-only admin access, an Application Gateway (WAF) fronting a VM Scale Set behind a Standard Load Balancer.</p>
-          <div class="tag-row"><span class="tag">Azure VNets</span><span class="tag">WAF</span><span class="tag">Load Balancer</span><span class="tag">HA</span></div>
+          <div class="entry-tags"><span>Azure VNets</span><span>WAF</span><span>Load Balancer</span><span>HA</span></div>
+          <a class="entry-link" href="https://github.com/Amritha902?tab=repositories&q=Azure" target="_blank" rel="noopener">View on GitHub →</a>
         </div>
-      </article>
+      </div>
+    </div>
+  </div>
+</section>
 
+<!-- ===== GITHUB ACTIVITY ===== -->
+<section id="activity" class="section">
+  <div class="container">
+    <div class="section-head reveal">
+      <div>
+        <p class="eyebrow">Activity</p>
+        <h2 class="section-title">Recent Commits</h2>
+      </div>
+      <a class="entry-link" href="https://github.com/Amritha902" target="_blank" rel="noopener">View GitHub →</a>
+    </div>
+    <div class="commit-list reveal" id="commitList">
+      <p class="commit-empty">Loading recent activity…</p>
     </div>
   </div>
 </section>
@@ -314,32 +254,30 @@
 <!-- ===== RESEARCH & PATENTS ===== -->
 <section id="research" class="section">
   <div class="container">
-    <p class="eyebrow reveal center">IP &amp; Research</p>
-    <h2 class="section-title center reveal">Patents &amp; Publications</h2>
+    <div class="section-head reveal">
+      <div>
+        <p class="eyebrow">IP &amp; Research</p>
+        <h2 class="section-title">Patents &amp; Publications</h2>
+      </div>
+    </div>
 
-    <div class="patent-grid">
-      <div class="win-card patent-card reveal">
-        <div class="win-bar">
-          <span class="win-dot gray"></span><span class="win-dot gray"></span><span class="win-dot gray"></span>
-          <span class="win-title">patents/zk-compliance-graph.pdf</span>
-          <span class="win-badge patent-status">Published · 11A</span>
-        </div>
-        <div class="patent-body">
+    <div class="entry-list">
+      <div class="entry reveal">
+        <div class="entry-meta">App. No.<br>202641092083</div>
+        <div class="entry-body">
+          <span class="entry-flag">Published · Section 11A</span>
           <h3>Continuous Privacy-Preserving Compliance Verification Using Zero-Knowledge Proof Graphs</h3>
-          <p>Co-Inventor · App. No. 202641092083 · Applicant: VIT Chennai · Filed 29 Jul 2026, published 07 Aug 2026</p>
-          <p class="patent-domain">Applied cryptography &amp; regulatory technology — zero-knowledge proofs, trusted execution, and recursive graph hashing to verify compliance continuously without exposing underlying data.</p>
+          <p>Co-Inventor · Applicant: VIT Chennai · Filed 29 Jul 2026, published 07 Aug 2026</p>
+          <p>Applied cryptography &amp; regulatory technology — zero-knowledge proofs, trusted execution, and recursive graph hashing to verify compliance continuously without exposing underlying data.</p>
         </div>
       </div>
-      <div class="win-card patent-card reveal">
-        <div class="win-bar">
-          <span class="win-dot gray"></span><span class="win-dot gray"></span><span class="win-dot gray"></span>
-          <span class="win-title">patents/power-gated-adder.pdf</span>
-          <span class="win-badge patent-status">Published</span>
-        </div>
-        <div class="patent-body">
+      <div class="entry reveal">
+        <div class="entry-meta">App. No.<br>202641062765</div>
+        <div class="entry-body">
+          <span class="entry-flag">Published</span>
           <h3>Power-Gated Full Adder Cell with Input-Based Bypass Logic and Multiplier Architecture</h3>
-          <p>Co-Inventor · App. No. 202641062765</p>
-          <p class="patent-domain">Low-power VLSI arithmetic — NOR-based power gating with input-driven bypass logic cutting switching and leakage power at 180nm, extended to a full multiplier.</p>
+          <p>Co-Inventor</p>
+          <p>Low-power VLSI arithmetic — NOR-based power gating with input-driven bypass logic cutting switching and leakage power at 180nm, extended to a full multiplier.</p>
         </div>
       </div>
     </div>
@@ -349,49 +287,33 @@
 <!-- ===== SKILLS ===== -->
 <section id="skills" class="section">
   <div class="container">
-    <p class="eyebrow reveal center">Toolbox</p>
-    <h2 class="section-title center reveal">Skills</h2>
+    <div class="section-head reveal">
+      <div>
+        <p class="eyebrow">Toolbox</p>
+        <h2 class="section-title">Skills</h2>
+      </div>
+    </div>
 
-    <div class="skills-grid">
-      <div class="win-card skill-card reveal">
-        <div class="win-bar"><span class="win-dot gray"></span><span class="win-dot gray"></span><span class="win-dot gray"></span><span class="win-title">skills/networking.json</span></div>
-        <div class="skill-body">
-        <div class="chip-row">
-          <span class="chip">TCP/IP</span><span class="chip">OSI Model</span><span class="chip">CIDR &amp; Subnetting</span><span class="chip">DNS</span><span class="chip">HTTP/HTTPS</span><span class="chip">WAN Topology</span><span class="chip">Routing &amp; Link Adjacency</span><span class="chip">Fault Correlation</span><span class="chip">AQM / CoDel / fq_codel</span><span class="chip">Linux tc/qdisc</span><span class="chip">eBPF</span>
-        </div>
-        </div>
+    <div class="skills-list">
+      <div class="skill-row reveal">
+        <div class="skill-cat">Networking</div>
+        <div class="skill-items">TCP/IP, OSI model, CIDR &amp; subnetting, DNS, HTTP/HTTPS, WAN topology, routing &amp; link adjacency, fault correlation, AQM (CoDel, fq_codel), Linux tc/qdisc, eBPF</div>
       </div>
-      <div class="win-card skill-card reveal">
-        <div class="win-bar"><span class="win-dot gray"></span><span class="win-dot gray"></span><span class="win-dot gray"></span><span class="win-title">skills/cloud-monitoring.json</span></div>
-        <div class="skill-body">
-        <div class="chip-row">
-          <span class="chip">Azure VNets</span><span class="chip">NSGs</span><span class="chip">VNet Peering</span><span class="chip">App Gateway</span><span class="chip">Load Balancer</span><span class="chip">Private Endpoints</span><span class="chip">Bastion</span><span class="chip">Function Apps</span><span class="chip">KQL / Azure Monitor</span><span class="chip">Log Analytics</span><span class="chip">Network Watcher</span><span class="chip">Docker</span><span class="chip">Git &amp; GitHub Actions</span><span class="chip">CI/CD</span>
-        </div>
-        </div>
+      <div class="skill-row reveal">
+        <div class="skill-cat">Cloud &amp; Monitoring</div>
+        <div class="skill-items">Azure VNets, NSGs, VNet peering, Application Gateway, Load Balancer, Private Endpoints, Bastion, Function Apps, KQL / Azure Monitor, Log Analytics, Network Watcher, Docker, Git &amp; GitHub Actions, CI/CD</div>
       </div>
-      <div class="win-card skill-card reveal">
-        <div class="win-bar"><span class="win-dot gray"></span><span class="win-dot gray"></span><span class="win-dot gray"></span><span class="win-title">skills/programming-data.json</span></div>
-        <div class="skill-body">
-        <div class="chip-row">
-          <span class="chip">Python</span><span class="chip">C++</span><span class="chip">Java</span><span class="chip">SQL</span><span class="chip">Bash</span><span class="chip">PowerShell</span><span class="chip">Verilog</span><span class="chip">Pandas / NumPy</span><span class="chip">scikit-learn</span><span class="chip">TensorFlow</span><span class="chip">Model Calibration</span><span class="chip">IR &amp; Ranking</span><span class="chip">LLM / Multi-Agent Systems</span>
-        </div>
-        </div>
+      <div class="skill-row reveal">
+        <div class="skill-cat">Programming &amp; Data</div>
+        <div class="skill-items">Python, C++, Java, SQL, Bash, PowerShell, Verilog, Pandas / NumPy, scikit-learn, TensorFlow, model calibration, information retrieval &amp; ranking, LLM / multi-agent systems</div>
       </div>
-      <div class="win-card skill-card reveal">
-        <div class="win-bar"><span class="win-dot gray"></span><span class="win-dot gray"></span><span class="win-dot gray"></span><span class="win-title">skills/fintech.json</span></div>
-        <div class="skill-body">
-        <div class="chip-row">
-          <span class="chip">NSE/BSE APIs</span><span class="chip">Market Surveillance</span><span class="chip">Credibility Signals</span><span class="chip">Regulatory Compliance</span><span class="chip">Privacy-Preserving Verification</span><span class="chip">Risk Scoring</span>
-        </div>
-        </div>
+      <div class="skill-row reveal">
+        <div class="skill-cat">Financial Technology</div>
+        <div class="skill-items">NSE/BSE APIs, market surveillance, credibility signals, regulatory compliance, privacy-preserving verification, risk scoring</div>
       </div>
-      <div class="win-card skill-card reveal">
-        <div class="win-bar"><span class="win-dot gray"></span><span class="win-dot gray"></span><span class="win-dot gray"></span><span class="win-title">skills/hardware.json</span></div>
-        <div class="skill-body">
-        <div class="chip-row">
-          <span class="chip">Cadence Virtuoso</span><span class="chip">Xilinx Vivado</span><span class="chip">Verilog RTL</span><span class="chip">FPGA</span><span class="chip">Low-Power VLSI</span>
-        </div>
-        </div>
+      <div class="skill-row reveal">
+        <div class="skill-cat">Hardware</div>
+        <div class="skill-items">Cadence Virtuoso, Xilinx Vivado, Verilog RTL, FPGA, low-power VLSI</div>
       </div>
     </div>
   </div>
@@ -400,39 +322,48 @@
 <!-- ===== ACHIEVEMENTS ===== -->
 <section id="achievements" class="section">
   <div class="container">
-    <p class="eyebrow reveal center">Recognition</p>
-    <h2 class="section-title center reveal">Achievements &amp; Honours</h2>
+    <div class="section-head reveal">
+      <div>
+        <p class="eyebrow">Recognition</p>
+        <h2 class="section-title">Achievements &amp; Honours</h2>
+      </div>
+    </div>
 
-    <div class="achieve-grid">
-      <div class="win-card achieve-card reveal">
-        <span class="achieve-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M8 4h8v4a4 4 0 0 1-8 0V4Z"/><path d="M8 5H5a3 3 0 0 0 3 4"/><path d="M16 5h3a3 3 0 0 1-3 4"/><path d="M12 12v3"/><path d="M9 19h6"/><path d="M10 15h4l1 4H9l1-4Z"/></svg></span>
-        <h3>SEBI Securities Market Hackathon 2025</h3>
-        <p>Winner — Jury Recommendation Prize; top 6 teams nationally.</p>
+    <div class="entry-list">
+      <div class="entry reveal">
+        <div class="entry-meta">2025</div>
+        <div class="entry-body">
+          <h3>SEBI Securities Market Hackathon</h3>
+          <p>Winner — Jury Recommendation Prize; top 6 teams nationally.</p>
+        </div>
       </div>
-      <div class="win-card achieve-card reveal">
-        <span class="achieve-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="8.5"/><path d="M3.5 12h17M12 3.5c2.5 2.4 3.8 5.4 3.8 8.5s-1.3 6.1-3.8 8.5c-2.5-2.4-3.8-5.4-3.8-8.5S9.5 5.9 12 3.5Z"/></svg></span>
-        <h3>Google Generative AI Hackathon 2025</h3>
-        <p>Top 60 Nationwide for an offline-first multilingual education PWA.</p>
+      <div class="entry reveal">
+        <div class="entry-meta">2025</div>
+        <div class="entry-body">
+          <h3>Google Generative AI Hackathon</h3>
+          <p>Top 60 Nationwide for an offline-first multilingual education PWA.</p>
+        </div>
       </div>
-      <div class="win-card achieve-card reveal">
-        <span class="achieve-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M8 3l2.5 6M16 3l-2.5 6"/><circle cx="12" cy="14" r="6.5"/><path d="M12 11.2l1 2 2.2.3-1.6 1.5.4 2.2-2-1.1-2 1.1.4-2.2-1.6-1.5 2.2-.3 1-2Z"/></svg></span>
-        <h3>Samsung Spatial Hackathon 2025</h3>
-        <p>2nd Place — ML dereverberation pipeline tuned to 48.2 GMAC/s under a 50 GMAC/s budget.</p>
+      <div class="entry reveal">
+        <div class="entry-meta">2025</div>
+        <div class="entry-body">
+          <h3>Samsung Spatial Hackathon</h3>
+          <p>2nd Place — ML dereverberation pipeline tuned to 48.2 GMAC/s under a 50 GMAC/s budget.</p>
+        </div>
       </div>
-      <div class="win-card achieve-card reveal">
-        <span class="achieve-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><rect x="7" y="7" width="10" height="10" rx="1.5"/><path d="M9.5 7V4M14.5 7V4M9.5 20v-3M14.5 20v-3M7 9.5H4M7 14.5H4M20 9.5h-3M20 14.5h-3"/></svg></span>
-        <h3>SanDisk Hackathon (ECE Firmware)</h3>
-        <p>Built CacheSense solo — an entropy-gated adaptive SSD compression pipeline, 10MB–10GB.</p>
+      <div class="entry reveal">
+        <div class="entry-meta">—</div>
+        <div class="entry-body">
+          <h3>SanDisk Hackathon (ECE Firmware)</h3>
+          <p>Built CacheSense solo — an entropy-gated adaptive SSD compression pipeline, 10MB–10GB.</p>
+        </div>
       </div>
-      <div class="win-card achieve-card reveal">
-        <span class="achieve-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M10 3h4M9 3v6.5L4.8 17a2 2 0 0 0 1.7 3h11a2 2 0 0 0 1.7-3L15 9.5V3"/><path d="M7.5 14h9"/></svg></span>
-        <h3>Samsung PRISM</h3>
-        <p>Selected Student Researcher for Samsung's university research programme.</p>
-      </div>
-      <div class="win-card achieve-card reveal">
-        <span class="achieve-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M7 3h8l4 4v13a1 1 0 0 1-1 1H7a1 1 0 0 1-1-1V4a1 1 0 0 1 1-1Z"/><path d="M14 3v5h5"/><path d="M9 13h6M9 17h6M9 9h2"/></svg></span>
-        <h3>Two Published Indian Patents</h3>
-        <p>Co-inventor, App. Nos. 202641092083 &amp; 202641062765.</p>
+      <div class="entry reveal">
+        <div class="entry-meta">—</div>
+        <div class="entry-body">
+          <h3>Samsung PRISM</h3>
+          <p>Selected Student Researcher for Samsung's university research programme.</p>
+        </div>
       </div>
     </div>
   </div>
@@ -443,7 +374,7 @@
   <div class="container edu-grid">
     <div class="reveal">
       <p class="eyebrow">Academics</p>
-      <h2 class="section-title">Education</h2>
+      <h2 class="section-title" style="margin-bottom:20px;">Education</h2>
       <div class="edu-item">
         <h3>Vellore Institute of Technology, Chennai</h3>
         <p>B.Tech, Electronics and Communication Engineering · CGPA 8.65/10</p>
@@ -457,49 +388,27 @@
     </div>
     <div class="reveal">
       <p class="eyebrow">Beyond the Classroom</p>
-      <h2 class="section-title">Certifications &amp; Leadership</h2>
+      <h2 class="section-title" style="margin-bottom:20px;">Certifications</h2>
       <ul class="cert-list">
         <li>IBM: Machine Learning with Python, Generative AI, Cloud Computing, Data Structures</li>
         <li>Algorithmic Toolbox (Coursera) — verified badges on Credly</li>
-        <li>IEEE Photonics Society Member</li>
-        <li>VIT Chennai — Design Member, IEEE (event graphics &amp; creatives)</li>
-        <li>BIS VIT Chapter</li>
-        <li>Volunteer teacher, community social-service initiative</li>
+        <li>IEEE Photonics Society Member; VIT Chennai Design Member (event graphics)</li>
+        <li>BIS VIT Chapter; volunteer teacher, community social-service initiative</li>
       </ul>
-      <p class="lang-line"><strong>Languages:</strong> English, Tamil, Hindi</p>
+      <p class="lang-line"><strong>Languages —</strong> English, Tamil, Hindi</p>
     </div>
   </div>
 </section>
 
 <!-- ===== CONTACT ===== -->
-<section id="contact" class="section contact-section">
+<section id="contact" class="section">
   <div class="container">
-    <p class="eyebrow reveal center">Let's Talk</p>
-    <h2 class="section-title center reveal">Get In Touch</h2>
-    <p class="section-sub center reveal">Open to cloud, network engineering, and data-focused roles — or just a good conversation about infrastructure.</p>
-
-    <div class="contact-grid">
-      <a href="mailto:amritha16112005@gmail.com" class="win-card contact-card reveal">
-        <svg viewBox="0 0 24 24"><path d="M2 4h20a1 1 0 0 1 1 1v14a1 1 0 0 1-1 1H2a1 1 0 0 1-1-1V5a1 1 0 0 1 1-1Zm19 2.4-9 6.3-9-6.3V19h18V6.4ZM3.2 5l8.8 6.16L20.8 5H3.2Z"/></svg>
-        <span>amritha16112005@gmail.com</span>
-      </a>
-      <a href="https://linkedin.com/in/amritha-s-oo" target="_blank" rel="noopener" class="win-card contact-card reveal">
-        <svg viewBox="0 0 24 24"><path d="M20.45 20.45h-3.55v-5.57c0-1.33-.02-3.04-1.85-3.04-1.86 0-2.14 1.45-2.14 2.94v5.67H9.36V9h3.41v1.56h.05c.47-.9 1.63-1.85 3.36-1.85 3.6 0 4.27 2.37 4.27 5.45v6.29ZM5.34 7.43a2.06 2.06 0 1 1 0-4.12 2.06 2.06 0 0 1 0 4.12ZM7.12 20.45H3.56V9h3.56v11.45ZM22.22 0H1.77C.8 0 0 .78 0 1.75v20.5C0 23.22.8 24 1.77 24h20.45c.98 0 1.78-.78 1.78-1.75V1.75C24 .78 23.2 0 22.22 0Z"/></svg>
-        <span>linkedin.com/in/amritha-s-oo</span>
-      </a>
-      <a href="https://github.com/Amritha902" target="_blank" rel="noopener" class="win-card contact-card reveal">
-        <svg viewBox="0 0 24 24"><path d="M12 .5C5.65.5.5 5.65.5 12c0 5.1 3.29 9.42 7.86 10.95.57.1.78-.25.78-.55v-1.94c-3.2.7-3.88-1.54-3.88-1.54-.52-1.34-1.28-1.7-1.28-1.7-1.04-.72.08-.7.08-.7 1.16.08 1.77 1.2 1.77 1.2 1.03 1.77 2.7 1.26 3.36.96.1-.75.4-1.26.73-1.55-2.56-.29-5.26-1.28-5.26-5.7 0-1.26.45-2.28 1.19-3.09-.12-.29-.52-1.47.11-3.06 0 0 .97-.31 3.18 1.18a11.1 11.1 0 0 1 5.8 0c2.2-1.49 3.17-1.18 3.17-1.18.63 1.59.24 2.77.12 3.06.74.81 1.18 1.83 1.18 3.09 0 4.43-2.7 5.4-5.28 5.69.42.36.78 1.07.78 2.16v3.2c0 .31.21.67.79.55A10.52 10.52 0 0 0 23.5 12c0-6.35-5.15-11.5-11.5-11.5Z"/></svg>
-        <span>github.com/Amritha902</span>
-      </a>
-      <a href="https://www.credly.com/users/amritha-s" target="_blank" rel="noopener" class="win-card contact-card reveal">
-        <svg viewBox="0 0 24 24"><path d="M12 1 3 5v6c0 5.55 3.84 10.74 9 12 5.16-1.26 9-6.45 9-12V5l-9-4Zm0 2.2 7 3.1v4.7c0 4.52-3.05 8.76-7 9.94-3.95-1.18-7-5.42-7-9.94V6.3l7-3.1Zm-1 5.3v6.5l5-3.25-5-3.25Z"/></svg>
-        <span>Credly Badges</span>
-      </a>
-    </div>
-
-    <div class="cta-final reveal">
-      <a href="mailto:amritha16112005@gmail.com" class="btn btn-primary btn-lg">Say Hello</a>
-    </div>
+    <p class="eyebrow reveal">Let's Talk</p>
+    <h2 class="section-title reveal">Open to cloud, network, and data roles.</h2>
+    <a href="mailto:amritha16112005@gmail.com" class="contact-email reveal">amritha16112005@gmail.com</a>
+    <p class="contact-row reveal">
+      <a href="https://github.com/Amritha902" target="_blank" rel="noopener">GitHub</a><span class="sep">·</span><a href="https://linkedin.com/in/amritha-s-oo" target="_blank" rel="noopener">LinkedIn</a><span class="sep">·</span><a href="https://www.credly.com/users/amritha-s" target="_blank" rel="noopener">Credly</a><span class="sep">·</span><a href="https://medium.com/@amritha16112005" target="_blank" rel="noopener">Medium</a>
+    </p>
   </div>
 </section>
 
@@ -507,35 +416,10 @@
 
 <footer class="footer">
   <div class="container footer-inner">
-    <p>© <span id="year"></span> Amritha S. — Designed &amp; built with intent.</p>
-    <a href="#home" class="to-top" aria-label="Back to top">↑</a>
+    <span>© <span id="year"></span> Amritha S.</span>
+    <a href="#home">Back to top ↑</a>
   </div>
 </footer>
-
-<!-- ===== DOCK (fixed nav) ===== -->
-<nav class="dock" id="dock" aria-label="Section navigation">
-  <a href="#home" class="dock-item" data-target="home" data-label="Home">
-    <svg viewBox="0 0 24 24"><path d="M12 3 2 12h3v8h6v-6h2v6h6v-8h3L12 3Z"/></svg>
-  </a>
-  <a href="#about" class="dock-item" data-target="about" data-label="About">
-    <svg viewBox="0 0 24 24"><path d="M12 12a5 5 0 1 0 0-10 5 5 0 0 0 0 10Zm0 2c-4.42 0-9 2.24-9 5v2h18v-2c0-2.76-4.58-5-9-5Z"/></svg>
-  </a>
-  <a href="#experience" class="dock-item" data-target="experience" data-label="Experience">
-    <svg viewBox="0 0 24 24"><path d="M9 4h6a2 2 0 0 1 2 2v1h3a2 2 0 0 1 2 2v9a2 2 0 0 1-2 2H4a2 2 0 0 1-2-2V9a2 2 0 0 1 2-2h3V6a2 2 0 0 1 2-2Zm0 3h6V6H9v1ZM4 9v9h16V9H4Z"/></svg>
-  </a>
-  <a href="#projects" class="dock-item" data-target="projects" data-label="Projects">
-    <svg viewBox="0 0 24 24"><path d="M3 6a2 2 0 0 1 2-2h4l2 2h8a2 2 0 0 1 2 2v9a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V6Z"/></svg>
-  </a>
-  <a href="#research" class="dock-item" data-target="research" data-label="Research">
-    <svg viewBox="0 0 24 24"><path d="M9 2v6.28L4.2 17a2 2 0 0 0 1.75 3h12.1a2 2 0 0 0 1.75-3L15 8.28V2H9Zm2 2h2v4.72l.3.53L15.6 14H8.4l2.3-4.75.3-.53V4Z"/></svg>
-  </a>
-  <a href="#skills" class="dock-item" data-target="skills" data-label="Skills">
-    <svg viewBox="0 0 24 24"><path d="M9 2h6v2h3a2 2 0 0 1 2 2v3h2v6h-2v3a2 2 0 0 1-2 2h-3v2H9v-2H6a2 2 0 0 1-2-2v-3H2V9h2V6a2 2 0 0 1 2-2h3V2Zm-1 6v8h8V8H8Z"/></svg>
-  </a>
-  <a href="#contact" class="dock-item" data-target="contact" data-label="Contact">
-    <svg viewBox="0 0 24 24"><path d="M2 4h20a1 1 0 0 1 1 1v14a1 1 0 0 1-1 1H2a1 1 0 0 1-1-1V5a1 1 0 0 1 1-1Zm19 2.4-9 6.3-9-6.3V19h18V6.4ZM3.2 5l8.8 6.16L20.8 5H3.2Z"/></svg>
-  </a>
-</nav>
 
 <script src="js/main.js"></script>
 </body>
