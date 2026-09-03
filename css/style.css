@@ -8,6 +8,7 @@
   --border-strong: rgba(255,255,255,0.18);
   --teal: #0e6b63;
   --teal-dim: #0a4b45;
+  --teal-bright: #1fa89b;
   --max: 1180px;
   --font-display: 'Fraunces', Georgia, serif;
   --font-sans: 'Archivo', -apple-system, BlinkMacSystemFont, 'Helvetica Neue', Arial, sans-serif;
@@ -119,6 +120,41 @@ svg{width:18px; height:18px; fill:none; stroke:currentColor;}
 .hero-socials a{color:var(--text-dim); transition:color .2s ease;}
 .hero-socials a:hover{color:var(--teal);}
 .hero-socials .sep{color:var(--text-faint);}
+
+/* ============ Logo mark ============ */
+.logo{width:26px; height:26px; flex-shrink:0; overflow:visible;}
+.logo .lg-link{stroke:var(--teal-bright); stroke-width:2; fill:none; stroke-linecap:round;}
+.logo .lg-node{fill:var(--text);}
+.logo .lg-apex{fill:var(--teal-bright);}
+.brand{display:inline-flex; align-items:center; gap:11px;}
+.brand:hover .logo .lg-link{stroke:var(--text);}
+.logo .lg-link, .brand:hover .logo .lg-link{transition:stroke .25s ease;}
+
+/* ============ Preloader ============ */
+.preloader{
+  position:fixed; inset:0; z-index:9999; background:#000;
+  display:flex; align-items:center; justify-content:center; flex-direction:column; gap:22px;
+  transition:opacity .7s ease, visibility .7s ease;
+}
+.preloader.done{opacity:0; visibility:hidden;}
+.preloader .logo{width:74px; height:74px;}
+.preloader .lg-link{
+  stroke-dasharray:var(--len,60); stroke-dashoffset:var(--len,60);
+  animation:draw 1.05s cubic-bezier(.6,.05,.2,1) forwards;
+}
+.preloader .lg-link:nth-of-type(2){animation-delay:.16s;}
+.preloader .lg-link:nth-of-type(3){animation-delay:.32s;}
+.preloader .lg-node, .preloader .lg-apex{opacity:0; animation:popIn .4s ease forwards .72s;}
+@keyframes draw{to{stroke-dashoffset:0;}}
+@keyframes popIn{to{opacity:1;}}
+.preloader-name{
+  font-family:var(--font-mono); font-size:.72rem; letter-spacing:.3em; text-transform:uppercase;
+  color:var(--text-faint); opacity:0; animation:popIn .5s ease forwards .9s;
+}
+body.loading{overflow:hidden;}
+@media (prefers-reduced-motion: reduce){
+  .preloader{display:none;}
+}
 
 /* ============ Hero topology canvas ============ */
 #heroCanvas{

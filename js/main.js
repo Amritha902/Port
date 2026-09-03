@@ -1,3 +1,25 @@
+// ===== Preloader =====
+(function preloader(){
+  const el = document.getElementById('preloader');
+  if (!el) return;
+  const reduced = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+  const hold = reduced ? 0 : 1500;
+  const start = performance.now();
+
+  function dismiss(){
+    const elapsed = performance.now() - start;
+    setTimeout(() => {
+      el.classList.add('done');
+      document.body.classList.remove('loading');
+    }, Math.max(0, hold - elapsed));
+  }
+
+  if (document.readyState === 'complete') dismiss();
+  else window.addEventListener('load', dismiss);
+  // never trap the page if load stalls
+  setTimeout(dismiss, 4000);
+})();
+
 // ===== Year =====
 document.getElementById('year').textContent = new Date().getFullYear();
 
