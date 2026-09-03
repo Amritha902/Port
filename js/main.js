@@ -29,6 +29,37 @@ navLinksEl.querySelectorAll('a').forEach(a => {
   });
 });
 
+// ===== Dock active state on scroll =====
+const dockItems = document.querySelectorAll('.dock-item');
+const dockTargetIds = ['home', 'about', 'experience', 'work', 'research', 'skills', 'contact'];
+const dockSections = dockTargetIds.map(id => document.getElementById(id)).filter(Boolean);
+
+const dockObserver = new IntersectionObserver((entries) => {
+  entries.forEach(entry => {
+    if (entry.isIntersecting) {
+      const id = entry.target.getAttribute('id');
+      dockItems.forEach(item => {
+        item.classList.toggle('active', item.getAttribute('data-target') === id);
+      });
+    }
+  });
+}, { rootMargin: '-40% 0px -55% 0px', threshold: 0 });
+
+dockSections.forEach(s => dockObserver.observe(s));
+
+// ===== Hero cursor glow =====
+const heroSection = document.querySelector('.hero');
+const heroGlow = document.getElementById('heroGlow');
+if (heroSection && heroGlow && window.matchMedia('(pointer: fine)').matches) {
+  heroSection.addEventListener('mousemove', (e) => {
+    const rect = heroSection.getBoundingClientRect();
+    heroGlow.style.left = (e.clientX - rect.left) + 'px';
+    heroGlow.style.top = (e.clientY - rect.top) + 'px';
+  });
+  heroSection.addEventListener('mouseenter', () => heroSection.classList.add('glow-active'));
+  heroSection.addEventListener('mouseleave', () => heroSection.classList.remove('glow-active'));
+}
+
 // ===== Active nav link on scroll =====
 const navLinkEls = document.querySelectorAll('.nav-link');
 const navTargetIds = ['about', 'experience', 'work', 'contact'];
