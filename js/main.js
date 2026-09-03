@@ -23,110 +23,134 @@
 // ===== Year =====
 document.getElementById('year').textContent = new Date().getFullYear();
 
-// ===== Hero WAN topology with travelling packets =====
-(function heroTopology(){
-  const canvas = document.getElementById('heroCanvas');
+// ===== Site-wide particle field (parallax + scroll-reactive) =====
+(function particleField(){
+  const canvas = document.getElementById('fieldCanvas');
   if (!canvas) return;
   if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;
 
   const ctx = canvas.getContext('2d');
   let w = 0, h = 0, dpr = 1;
-  let nodes = [], edges = [], packets = [];
+  let parts = [];
+  const mouse = { x: -9999, y: -9999 };
+  let scrollY = window.scrollY, vel = 0;
 
-  // A deliberate backbone: a few core sites, each fanning out to edge sites.
-  function buildTopology(){
-    const cores = [
-      { x: 0.24, y: 0.34 }, { x: 0.52, y: 0.62 }, { x: 0.78, y: 0.30 }
-    ];
-    const edgesRel = [
-      { x: 0.10, y: 0.16 }, { x: 0.13, y: 0.58 }, { x: 0.34, y: 0.14 },
-      { x: 0.36, y: 0.80 }, { x: 0.62, y: 0.20 }, { x: 0.66, y: 0.86 },
-      { x: 0.88, y: 0.58 }, { x: 0.92, y: 0.14 }, { x: 0.46, y: 0.40 }
-    ];
+  const COUNT = () => Math.round(Math.min(96, Math.max(38, (w * h) / 20000)));
 
-    nodes = [];
-    cores.forEach(p => nodes.push({ bx: p.x, by: p.y, core: true, ph: Math.random() * Math.PI * 2 }));
-    edgesRel.forEach(p => nodes.push({ bx: p.x, by: p.y, core: false, ph: Math.random() * Math.PI * 2 }));
-
-    // core mesh
-    edges = [[0, 1], [1, 2], [0, 2]];
-    // each edge node attaches to its nearest core
-    for (let i = cores.length; i < nodes.length; i++) {
-      let best = 0, bestD = Infinity;
-      for (let c = 0; c < cores.length; c++) {
-        const d = (nodes[i].bx - cores[c].x) ** 2 + (nodes[i].by - cores[c].y) ** 2;
-        if (d < bestD) { bestD = d; best = c; }
-      }
-      edges.push([best, i]);
+  function build(){
+    parts = [];
+    const n = COUNT();
+    for (let i = 0; i < n; i++) {
+      const depth = 0.25 + Math.random() * 0.75;      // 0.25 near .. 1 far
+      parts.push({
+        x: Math.random() * w,
+        y: Math.random() * h,
+        depth,
+        r: (1 - depth) * 2.0 + 0.6,                   // nearer = larger
+        drift: (Math.random() - 0.5) * 0.10,
+        ph: Math.random() * Math.PI * 2,
+        teal: Math.random() < 0.34
+      });
     }
-    packets = edges.map((e, i) => ({ e: i, t: Math.random(), sp: 0.0016 + Math.random() * 0.0026 }));
   }
 
   function resize(){
-    const rect = canvas.getBoundingClientRect();
     dpr = Math.min(window.devicePixelRatio || 1, 2);
-    w = rect.width; h = rect.height;
+    w = window.innerWidth; h = window.innerHeight;
     canvas.width = Math.floor(w * dpr);
     canvas.height = Math.floor(h * dpr);
+    canvas.style.width = w + 'px';
+    canvas.style.height = h + 'px';
     ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
+    build();
   }
 
-  function pos(n, time){
-    // slow organic drift so the topology breathes without wandering
-    return {
-      x: n.bx * w + Math.sin(time * 0.00016 + n.ph) * 11,
-      y: n.by * h + Math.cos(time * 0.00013 + n.ph * 1.4) * 9
-    };
+  function onScroll(){
+    const y = window.scrollY;
+    vel += (y - scrollY);
+    scrollY = y;
   }
 
   function frame(time){
     ctx.clearRect(0, 0, w, h);
-    const pts = nodes.map(n => pos(n, time));
 
-    ctx.lineWidth = 1;
-    edges.forEach(([a, b]) => {
-      ctx.strokeStyle = (nodes[a].core && nodes[b].core)
-        ? 'rgba(14,107,99,0.30)'
-        : 'rgba(255,255,255,0.055)';
-      ctx.beginPath();
-      ctx.moveTo(pts[a].x, pts[a].y);
-      ctx.lineTo(pts[b].x, pts[b].y);
-      ctx.stroke();
-    });
+    // scroll velocity decays; it stretches particles into short trails
+    vel *= 0.90;
+    const stretch = Math.max(-26, Math.min(26, vel * 0.55));
 
-    packets.forEach(p => {
-      p.t += p.sp;
-      if (p.t > 1) p.t = 0;
-      const [a, b] = edges[p.e];
-      const x = pts[a].x + (pts[b].x - pts[a].x) * p.t;
-      const y = pts[a].y + (pts[b].y - pts[a].y) * p.t;
-      const fade = Math.sin(p.t * Math.PI);
-      ctx.fillStyle = `rgba(31,168,155,${0.55 * fade})`;
-      ctx.beginPath();
-      ctx.arc(x, y, 1.7, 0, Math.PI * 2);
-      ctx.fill();
-    });
+    for (const p of parts) {
+      // travelling down the field: nearer particles move more (parallax)
+      p.y -= vel * (1.05 - p.depth) * 0.55;
+      p.x += p.drift + Math.sin(time * 0.0002 + p.ph) * 0.10;
 
-    nodes.forEach((n, i) => {
-      const pt = pts[i];
-      ctx.beginPath();
-      ctx.arc(pt.x, pt.y, n.core ? 3.2 : 1.9, 0, Math.PI * 2);
-      ctx.fillStyle = n.core ? 'rgba(14,107,99,0.85)' : 'rgba(255,255,255,0.20)';
-      ctx.fill();
-      if (n.core) {
-        ctx.beginPath();
-        ctx.arc(pt.x, pt.y, 9 + Math.sin(time * 0.0013 + n.ph) * 2.4, 0, Math.PI * 2);
-        ctx.strokeStyle = 'rgba(14,107,99,0.20)';
-        ctx.stroke();
+      // wrap so the field is endless in both directions
+      if (p.y < -40) p.y = h + 40;
+      if (p.y > h + 40) p.y = -40;
+      if (p.x < -40) p.x = w + 40;
+      if (p.x > w + 40) p.x = -40;
+
+      // gentle mouse repulsion, strongest on near particles
+      const dx = p.x - mouse.x, dy = p.y - mouse.y;
+      const d2 = dx * dx + dy * dy;
+      let ox = 0, oy = 0;
+      if (d2 < 26000) {
+        const f = (1 - d2 / 26000) * (1.15 - p.depth) * 26;
+        const d = Math.sqrt(d2) || 1;
+        ox = (dx / d) * f; oy = (dy / d) * f;
       }
-    });
+
+      const x = p.x + ox, y = p.y + oy;
+      const alpha = (1.05 - p.depth) * 0.55;
+
+      if (Math.abs(stretch) > 1.2) {
+        ctx.strokeStyle = p.teal
+          ? `rgba(31,168,155,${alpha * 0.9})`
+          : `rgba(255,255,255,${alpha * 0.5})`;
+        ctx.lineWidth = p.r * 0.9;
+        ctx.lineCap = 'round';
+        ctx.beginPath();
+        ctx.moveTo(x, y);
+        ctx.lineTo(x, y + stretch * (1.05 - p.depth));
+        ctx.stroke();
+      } else {
+        ctx.fillStyle = p.teal
+          ? `rgba(31,168,155,${alpha})`
+          : `rgba(255,255,255,${alpha * 0.55})`;
+        ctx.beginPath();
+        ctx.arc(x, y, p.r, 0, Math.PI * 2);
+        ctx.fill();
+      }
+
+      p._x = x; p._y = y;
+    }
+
+    // constellation links between near neighbours
+    for (let i = 0; i < parts.length; i++) {
+      const a = parts[i];
+      for (let j = i + 1; j < parts.length; j++) {
+        const b = parts[j];
+        const dx = a._x - b._x, dy = a._y - b._y;
+        const d2 = dx * dx + dy * dy;
+        if (d2 < 15000) {
+          const t = 1 - d2 / 15000;
+          ctx.strokeStyle = `rgba(31,168,155,${t * 0.16})`;
+          ctx.lineWidth = 0.7;
+          ctx.beginPath();
+          ctx.moveTo(a._x, a._y);
+          ctx.lineTo(b._x, b._y);
+          ctx.stroke();
+        }
+      }
+    }
 
     requestAnimationFrame(frame);
   }
 
-  buildTopology();
   resize();
-  window.addEventListener('resize', () => { resize(); }, { passive: true });
+  window.addEventListener('resize', resize, { passive: true });
+  window.addEventListener('scroll', onScroll, { passive: true });
+  window.addEventListener('mousemove', (e) => { mouse.x = e.clientX; mouse.y = e.clientY; }, { passive: true });
+  window.addEventListener('mouseout', () => { mouse.x = -9999; mouse.y = -9999; });
   requestAnimationFrame(frame);
 })();
 

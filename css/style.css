@@ -105,17 +105,41 @@ svg{width:18px; height:18px; fill:none; stroke:currentColor;}
 .hero-desc strong{color:var(--text); font-weight:600;}
 .hero-actions{display:flex; align-items:center; gap:34px; flex-wrap:wrap; margin-bottom:56px;}
 .btn-solid{
-  font-family:var(--font-mono); font-size:.78rem; letter-spacing:.08em; text-transform:uppercase;
-  background:var(--teal); color:#fff; padding:15px 30px; border-radius:2px;
-  transition:background .2s ease;
+  position:relative; isolation:isolate; overflow:hidden;
+  display:inline-flex; align-items:center; gap:12px;
+  font-family:var(--font-mono); font-size:.78rem; letter-spacing:.1em; text-transform:uppercase;
+  color:#05100f; padding:17px 34px; border-radius:999px;
+  background:var(--teal-bright);
+  transition:color .35s ease, transform .35s cubic-bezier(.2,.8,.2,1), box-shadow .35s ease;
+  box-shadow:0 0 0 0 rgba(31,168,155,0);
 }
-.btn-solid:hover{background:var(--teal-dim);}
+/* fill sweeps up from the base on hover instead of a flat colour swap */
+.btn-solid::before{
+  content:''; position:absolute; inset:0; z-index:-1; background:var(--text);
+  transform:translateY(101%); transition:transform .45s cubic-bezier(.2,.8,.2,1);
+}
+.btn-solid:hover{transform:translateY(-2px); box-shadow:0 10px 34px -12px rgba(31,168,155,.55);}
+.btn-solid:hover::before{transform:translateY(0);}
+
 .btn-text{
-  font-family:var(--font-mono); font-size:.78rem; letter-spacing:.08em; text-transform:uppercase;
-  color:var(--text-dim); border-bottom:1px solid var(--border-strong); padding-bottom:3px;
-  transition:color .2s ease, border-color .2s ease;
+  display:inline-flex; align-items:center; gap:10px;
+  font-family:var(--font-mono); font-size:.78rem; letter-spacing:.1em; text-transform:uppercase;
+  color:var(--text-dim); padding:17px 6px 15px; position:relative;
+  transition:color .25s ease;
 }
-.btn-text:hover{color:var(--text); border-color:var(--text);}
+.btn-text::after{
+  content:''; position:absolute; left:6px; right:6px; bottom:9px; height:1px;
+  background:currentColor; transform:scaleX(1); transform-origin:right;
+  transition:transform .35s cubic-bezier(.2,.8,.2,1);
+}
+.btn-text:hover{color:var(--text);}
+.btn-text:hover::after{transform:scaleX(0);}
+
+.btn-arrow{
+  display:inline-block;
+  transition:transform .35s cubic-bezier(.2,.8,.2,1);
+}
+.btn-solid:hover .btn-arrow, .btn-text:hover .btn-arrow{transform:translateX(5px);}
 .hero-socials{display:flex; flex-wrap:wrap; gap:8px; font-family:var(--font-mono); font-size:.78rem; color:var(--text-faint);}
 .hero-socials a{color:var(--text-dim); transition:color .2s ease;}
 .hero-socials a:hover{color:var(--teal);}
@@ -156,11 +180,14 @@ body.loading{overflow:hidden;}
   .preloader{display:none;}
 }
 
-/* ============ Hero topology canvas ============ */
-#heroCanvas{
-  position:absolute; inset:0; width:100%; height:100%; z-index:0; pointer-events:none;
+/* ============ Site-wide particle field ============ */
+#fieldCanvas{
+  position:fixed; inset:0; width:100vw; height:100vh;
+  z-index:0; pointer-events:none;
 }
-.hero-inner-wrap{position:relative; z-index:2;}
+/* every content layer floats above the field */
+.nav, main, .footer, .dock, .strip{position:relative; z-index:1;}
+.nav{z-index:100;} .dock{z-index:200;}
 
 /* ============ Credibility strip (marquee) ============ */
 .strip{
