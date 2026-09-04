@@ -325,17 +325,24 @@ counters.forEach(c => counterObserver.observe(c));
 
 function animateCount(el){
   const target = parseFloat(el.getAttribute('data-count'));
-  const isDecimal = el.getAttribute('data-decimal') === 'true';
+  const decimals = parseInt(el.getAttribute('data-decimals') || '0', 10);
+  const pad = parseInt(el.getAttribute('data-pad') || '0', 10);
+  const suffix = el.getAttribute('data-suffix') || '';
   const duration = 1100;
   const start = performance.now();
+
+  const render = (v) => {
+    let out = decimals ? v.toFixed(decimals) : String(Math.round(v));
+    if (pad) out = out.padStart(pad, '0');
+    return out + suffix;
+  };
 
   function step(now){
     const progress = Math.min((now - start) / duration, 1);
     const eased = 1 - Math.pow(1 - progress, 3);
-    const value = target * eased;
-    el.textContent = isDecimal ? value.toFixed(2) : Math.round(value);
+    el.textContent = render(target * eased);
     if (progress < 1) requestAnimationFrame(step);
-    else el.textContent = isDecimal ? target.toFixed(2) : target;
+    else el.textContent = render(target);
   }
   requestAnimationFrame(step);
 }
