@@ -337,22 +337,23 @@ main, .footer, .strip{position:relative; z-index:1;}
 .section-count{font-family:var(--font-mono); font-size:.8rem; color:var(--text-faint);}
 
 /* ============ About ============ */
-.about-grid{display:grid; grid-template-columns:320px minmax(0,1fr) 250px; gap:72px; align-items:start;}
+.about-grid{display:grid; grid-template-columns:340px minmax(0,1fr) 250px; gap:68px; align-items:start;}
 .about-photo{
-  position:relative; width:100%; aspect-ratio:4/5;
+  position:relative; width:100%; aspect-ratio:3/4;
   border-radius:3px; overflow:hidden; border:1px solid var(--border);
 }
 .about-photo img{
   width:100%; height:100%; object-fit:cover;
-  /* tuned for a 9:16 full-body portrait in a 4:5 frame — lands the face ~40% down.
-     If the crop sits high or low on a different photo, this one number is the dial. */
-  object-position:50% 61%;
-  /* warm portrait on a black page — keep its warmth, just settle it into the palette */
-  filter:grayscale(12%) contrast(1.04) saturate(.94);
+  /* frame is 3:4 to match the source, so cover barely crops — this only nudges
+     the seated subject off dead centre. Raise the number to crop lower. */
+  object-position:50% 44%;
+  /* an evening plaza shot: teal glass and warm canopy light already sit in the
+     palette, so keep the colour and just lift it off the black */
+  filter:contrast(1.05) saturate(.98) brightness(1.03);
   transform:scale(1.01);
   transition:transform .8s cubic-bezier(.2,.8,.2,1), filter .6s ease;
 }
-.about-photo:hover img{transform:scale(1.045); filter:grayscale(0%) contrast(1.06) saturate(1);}
+.about-photo:hover img{transform:scale(1.05); filter:contrast(1.07) saturate(1.05) brightness(1.06);}
 /* offset editorial rule behind the frame */
 .about-photo::after{
   content:''; position:absolute; inset:0; pointer-events:none;
